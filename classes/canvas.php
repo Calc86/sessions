@@ -17,12 +17,17 @@ class canvas {
 
     protected function parseData($all){
         $users = array();
+        print_r($all);
         foreach($all as $line){
             list($id, $uid, $key, $start, $stop) = $line;
             $time = time();
-            for($i = $time - 100; $i <=$time; $i = $i + 5) {
-                if($i > $start && $i < $stop){
+            for($i = $time - 100; $i <= $time; $i = $i + 5) {
+                if($i >= $start && $i <= $stop){
                     $users[$i][$uid] = 1;
+                }
+                else{
+                    if(!isset($users[$i]))
+                        $users[$i] = null;
                 }
             }
         }
